@@ -141,10 +141,11 @@ def _read_nodes(f, is_ascii, data_size):
         num_nodes = int(fromfile(f, c_size_t, 1)[0])
         ixx = slice(idx, idx + num_nodes)
 
-        if is_dense:
-            fromfile(f, c_size_t, num_nodes)
-        else:
-            tags[ixx] = fromfile(f, c_size_t, num_nodes) - 1
+        # if is_dense:
+        #     fromfile(f, c_size_t, num_nodes)
+        # else:
+        #     tags[ixx] = fromfile(f, c_size_t, num_nodes) - 1
+        tags[ixx] = fromfile(f, c_size_t, num_nodes) - 1
         points[ixx] = fromfile(f, c_double, num_nodes * 3).reshape((num_nodes, 3))
         idx += num_nodes
 
